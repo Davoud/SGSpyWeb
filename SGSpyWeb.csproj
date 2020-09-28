@@ -14,6 +14,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="3.1.8" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
   </ItemGroup>
 
   <ItemGroup>
@@ -24,8 +25,19 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
-    <Folder Include="Model\" />
+    <None Remove="ClientApp\src\app\rcomponents\explorer\Accordion.ts" />
+    <None Remove="ClientApp\src\app\rcomponents\explorer\panel.ts" />
+    <None Remove="ClientApp\src\app\rcomponents\Mode.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Utils\Utils.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\src\app\rcomponents\explorer\Accordion.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\rcomponents\explorer\panel.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\rcomponents\Mode.ts" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

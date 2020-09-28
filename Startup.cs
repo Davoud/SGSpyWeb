@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using SGSpyWeb.Model;
 
 namespace SGSpyWeb
 {
@@ -13,6 +14,7 @@ namespace SGSpyWeb
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+            RComponentsDB.Load(@"D:\Dvp11");
         }
 
         public IConfiguration Configuration { get; }

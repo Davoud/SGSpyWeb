@@ -1,1 +1,14 @@
-<p>explorer works!</p>
+<p *ngIf="!domains"><em>loading components...</em></p>
+
+<accordion *ngIf="domains">
+  <panel *ngFor="let domain of domains"
+         [title]="domain.name"
+         [count]="domain.components.length"
+         (toggle)="c.opened = !c.opened" >   
+    <ul class="list-group">
+       <li class="list-group-item" *ngFor="let cmp of domain.components">
+          {{ cmp.name }}
+       </li>
+    </ul>
+  </panel>
+</accordion>

@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Domain } from '../Mode';
+import { domain } from 'process';
 
 @Component({
   selector: 'app-explorer',
@@ -7,9 +10,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ExplorerComponent implements OnInit {
 
-  constructor() { }
+  domains: Domain[];
+  baseUrl: string;
 
-  ngOnInit() {
+  constructor(private http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
+    this.baseUrl = baseUrl;
   }
 
+  ngOnInit() {
+    this.getDomains();
+  }
+
+  getDomains() {
+    this.http.get<Domain[]>(this.baseUrl + "rcomponents").subscribe(domains => {
+      this.domains = domains;
+    });
+  }
 }
