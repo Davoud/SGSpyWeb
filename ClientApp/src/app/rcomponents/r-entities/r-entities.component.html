@@ -1,0 +1,13 @@
+<accordion *ngIf="entities">
+  <panel *ngFor="let entity of entities"
+         [title]="entity.name"
+         [count]="entity.properties.length"
+         (toggle)="entity.opened = !entity.opened">
+    <ul class="list-group">
+
+      <li class="list-group-item" *ngFor="let property of entity.properties">
+        {{ property.name }}: {{ property.type }}
+      </li>
+    </ul>
+  </panel>
+</accordion>

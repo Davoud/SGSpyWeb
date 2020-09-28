@@ -35,7 +35,7 @@ namespace SGSpyWeb.Model
 
             });
 
-            var commons = Directory.GetFiles(path, "*.json");
+            var commons = Directory.GetFiles(path, "*Retail*.json");
             foreach (var dllInfo in commons)
                 loader.Send(dllInfo);
             
@@ -43,6 +43,7 @@ namespace SGSpyWeb.Model
             Console.WriteLine("Sent all for loading");
         }
 
+        public static RComponent GetByID(string componentId) => db[componentId];
     }
 
    

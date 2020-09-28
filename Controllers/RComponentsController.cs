@@ -17,7 +17,7 @@ namespace SGSpyWeb.Controllers
         [HttpGet]
         public IEnumerable<Domain> Get()
         {
-            var domains = new Dictionary<string, Domain>();
+            var domains = new SortedList<string, Domain>();
             foreach(var cmp in RComponentsDB.LoadedComponents())
             {
                 if(domains.TryGetValue(cmp.Domain, out var domain))
@@ -32,29 +32,13 @@ namespace SGSpyWeb.Controllers
             return domains.Values;
         }
 
-        // GET api/<RComponentsController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
+        // GET <RComponentsController>/id/entities
+        [HttpGet("{id}/entities")]
+        public IEnumerable<REntity> GetEntities(string id)
         {
-            return "value";
+            return RComponentsDB.GetByID(id).Entities;
+
         }
 
-        // POST api/<RComponentsController>
-        [HttpPost]
-        public void Post([FromBody] string value)
-        {
-        }
-
-        // PUT api/<RComponentsController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
-        // DELETE api/<RComponentsController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
     }
 }
