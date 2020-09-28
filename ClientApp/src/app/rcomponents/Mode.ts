@@ -13,7 +13,7 @@ export interface RComponent {
 export interface REntity {
   name: string;
   id: string;
-  opened: boolean;
+  isEnum: boolean;
   propertires: RProperty[]
 }
 

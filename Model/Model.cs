@@ -59,7 +59,7 @@ namespace SGSpyWeb.Model
 
     public class REntity
     {
-        public REntity(string componentId, string name, IEnumerable<RProperty> properties)
+        public REntity(string componentId, string name, bool IsEnum, IEnumerable<RProperty> properties)
         {
             ID = $"{componentId}.{name}";
             Name = name;
@@ -67,6 +67,7 @@ namespace SGSpyWeb.Model
         }
         public string Name { get; private set; }
         public string ID { get; private set; }
+        public bool IsEnum { get; private set; }
         public IEnumerable<RProperty> Properties { get; }
         public override string ToString() => $"{Name} ({ID})";        
     }
@@ -118,7 +119,7 @@ namespace SGSpyWeb.Model
                 {
                     properties.Add(new RProperty((string)property.Name, (string)property.TypeName));
                 }
-                entites.Add(new REntity(ID, (string)ent.Name, properties.ToImmutableList()));
+                entites.Add(new REntity(ID, (string)ent.Name, (bool)ent.IsEnum, properties.ToImmutableList()));
             }
 
             return entites.ToImmutableList();
