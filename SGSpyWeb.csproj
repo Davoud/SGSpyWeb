@@ -25,8 +25,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="ClientApp\src\app\rcomponents\explorer\Accordion.ts" />
-    <None Remove="ClientApp\src\app\rcomponents\explorer\panel.ts" />
     <None Remove="ClientApp\src\app\rcomponents\Models.ts" />
   </ItemGroup>
 
@@ -35,8 +33,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <TypeScriptCompile Include="ClientApp\src\app\rcomponents\explorer\Accordion.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\rcomponents\explorer\panel.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\rcomponents\Models.ts" />
   </ItemGroup>
 

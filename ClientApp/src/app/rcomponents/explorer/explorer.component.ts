@@ -1,7 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Domain } from '../Models';
-import { domain } from 'process';
+
 
 @Component({
   selector: 'app-explorer',
@@ -13,6 +13,7 @@ export class ExplorerComponent implements OnInit {
   domains: Domain[];
   baseUrl: string;
 
+  
   constructor(private http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
     this.baseUrl = baseUrl;
   }
@@ -26,4 +27,6 @@ export class ExplorerComponent implements OnInit {
       this.domains = domains;
     });
   }
+
+  
 }

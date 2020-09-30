@@ -5,6 +5,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Utils;
+using static Utils.OptionHelpers;
+
 
 namespace SGSpyWeb.Model
 {
@@ -35,7 +38,7 @@ namespace SGSpyWeb.Model
 
             });
 
-            var commons = Directory.GetFiles(path, "*Retail*.json");
+            var commons = Directory.GetFiles(path, "*.json");
             foreach (var dllInfo in commons)
                 loader.Send(dllInfo);
             
@@ -43,7 +46,8 @@ namespace SGSpyWeb.Model
             Console.WriteLine("Sent all for loading");
         }
 
-        public static RComponent GetByID(string componentId) => db[componentId];
+        public static Option<RComponent> GetByID(string componentId) =>
+            db.TryGetValue(componentId, out var cmp) ? Some(cmp) : None;
     }
 
    

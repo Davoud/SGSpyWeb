@@ -1,13 +1,19 @@
 <em>{{ id }}</em>
 
-<mat-tab-group>
+<mat-tab-group [selectedIndex]=0>
   <mat-tab label="Entities">
-    <app-r-entities [componentId]="id"></app-r-entities>
+    <ng-template matTabContent>
+      <app-r-entities [componentId]="id"></app-r-entities>
+    </ng-template>
   </mat-tab>
   <mat-tab label="Services">
-    <app-r-services [componentId]="id"></app-r-services>
+    <ng-template matTabContent>
+      <app-r-services [componentId]="id"></app-r-services>
+    </ng-template>
   </mat-tab>
   <mat-tab label="Dependencies">
-    <app-r-dependencies [componentId]="id"></app-r-dependencies>
+    <ng-template matTabContent>
+      <app-r-dependencies [componentId]="id"></app-r-dependencies>
+    </ng-template>
   </mat-tab>
 </mat-tab-group>

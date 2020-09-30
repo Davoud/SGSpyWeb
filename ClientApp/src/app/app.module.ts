@@ -7,8 +7,6 @@ import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
 import { ExplorerComponent } from './rcomponents/explorer/explorer.component';
-import { PanelComponent } from './rcomponents/explorer/panel';
-import { AccordionComponent } from './rcomponents/explorer/Accordion';
 import { CompDetailsComponent } from './rcomponents/comp-details/comp-details.component';
 import { REntitiesComponent } from './rcomponents/r-entities/r-entities.component';
 import { RServicesComponent } from './rcomponents/r-services/r-services.component';
@@ -16,6 +14,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatListModule } from '@angular/material/list';
+import { MatSidenavModule } from '@angular/material/sidenav';
 import { RDependenciesComponent } from './rcomponents/r-depencencies/r-depencencies.component';
 
 const routes: Routes = [
@@ -28,10 +27,10 @@ const routes: Routes = [
         {
           path: ':id',
           component: CompDetailsComponent,
-          children: [
-            { path: 'entities', component: REntitiesComponent },
-            { path: 'services', component: RServicesComponent }
-          ]
+          //children: [
+          //  { path: 'entities', component: REntitiesComponent },
+          //  { path: 'services', component: RServicesComponent }
+          //]
         }
       ]
     }  
@@ -43,8 +42,6 @@ const routes: Routes = [
     NavMenuComponent,
     HomeComponent,
     ExplorerComponent,
-    PanelComponent,
-    AccordionComponent,
     CompDetailsComponent,
     REntitiesComponent,
     RServicesComponent,
@@ -57,6 +54,7 @@ const routes: Routes = [
     MatTabsModule,
     MatExpansionModule,
     MatListModule,
+    MatSidenavModule,
     RouterModule.forRoot(routes),
     BrowserAnimationsModule
     ],

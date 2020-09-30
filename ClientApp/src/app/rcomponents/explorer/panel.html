@@ -1,9 +1,0 @@
-<div class="card">
-  <div class="card-header bg-dark text-white hand" (click)="toggle.emit()">
-    {{title}} <span class="badge badge-info badge-pill">{{ count }}</span>
-  </div>
-  <ng-content class="card-body" *ngIf="opened" ></ng-content>
-  <!--<div class="card-body" *ngIf="opened">
-    <ng-content></ng-content>
-  </div>-->
-  <div>

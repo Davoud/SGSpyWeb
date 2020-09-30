@@ -1,16 +1,16 @@
 <p *ngIf="!domains"><em>loading components...</em></p>
 
-<accordion *ngIf="domains">
-  <panel *ngFor="let domain of domains"
-         [title]="domain.name"
-         [count]="domain.components.length"
-         (toggle)="domain.opened = !domain.opened" >   
-    <ul class="list-group">
-
-       <li class="list-group-item" *ngFor="let cmp of domain.components"          
-           data-toggle="tooltip" title="{{ cmp.version }}">
-          <a [routerLink]="cmp.id">{{ cmp.name }}</a>
-       </li>
-    </ul>
-  </panel>
-</accordion>
+<mat-accordion>
+  <mat-expansion-panel *ngFor="let domain of domains">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+       {{ domain.name }}
+      </mat-panel-title>      
+    </mat-expansion-panel-header>
+    <mat-nav-list>
+      <mat-list-item *ngFor="let cmp of domain.components">
+         <a [routerLink]="cmp.id">{{ cmp.name }}</a>
+      </mat-list-item>
+    </mat-nav-list>
+  </mat-expansion-panel>
+</mat-accordion>
