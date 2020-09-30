@@ -40,5 +40,13 @@ namespace SGSpyWeb.Controllers
 
         }
 
+        // GET <RComponentsController>/id/dependencies
+        [HttpGet("{id}/dependencies")]
+        public IEnumerable<RDependency> GetDependencies(string id)
+        {
+            return RComponentsDB.GetByID(id).Dependencies;
+
+        }
+
     }
 }

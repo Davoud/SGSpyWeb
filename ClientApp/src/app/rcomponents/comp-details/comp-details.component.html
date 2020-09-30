@@ -1,9 +1,13 @@
-<code>{{ id }}</code>
-<ul class="nav nav-tabs">
-  <li class="nav-item"><a class="nav-link active" [routerLink]="['entities']">Entities</a></li>
-  <li class="nav-item"><a class="nav-link" [routerLink]="['services']">Services</a></li>  
-</ul>
+<em>{{ id }}</em>
 
-<div class="tab-content">
-  <router-outlet></router-outlet>
-</div>
+<mat-tab-group>
+  <mat-tab label="Entities">
+    <app-r-entities [componentId]="id"></app-r-entities>
+  </mat-tab>
+  <mat-tab label="Services">
+    <app-r-services [componentId]="id"></app-r-services>
+  </mat-tab>
+  <mat-tab label="Dependencies">
+    <app-r-dependencies [componentId]="id"></app-r-dependencies>
+  </mat-tab>
+</mat-tab-group>

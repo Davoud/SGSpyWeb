@@ -21,3 +21,8 @@ export interface RProperty {
   name: string;
   type: string;
 }
+
+export interface RDependency {
+  name: string;
+  componentId: string;
+}

@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Domain } from '../Mode';
+import { Domain } from '../Models';
 import { domain } from 'process';
 
 @Component({

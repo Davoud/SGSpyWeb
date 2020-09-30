@@ -57,13 +57,28 @@ namespace SGSpyWeb.Model
         
     }
 
+    public class RDependency
+    {
+        public string Name { get; }
+        public string ComponentID { get; }
+        public RDependency(string name)
+        {
+            Name = name;
+            if(name.StartsWith("SystemGroup"))
+            {
+                ComponentID = name.Replace("SystemGroup.", null).Replace(".Common", null);
+            }
+        }
+    }
+
     public class REntity
     {
-        public REntity(string componentId, string name, bool IsEnum, IEnumerable<RProperty> properties)
+        public REntity(string componentId, string name, bool isEnum, IEnumerable<RProperty> properties)
         {
             ID = $"{componentId}.{name}";
             Name = name;
             Properties = properties;
+            IsEnum = isEnum;
         }
         public string Name { get; private set; }
         public string ID { get; private set; }
@@ -90,23 +105,38 @@ namespace SGSpyWeb.Model
         public string ID { get; private set; }
         public string Domain { get; private set; }
 
+        public IEnumerable<REntity> Entities => _entities.Value;
+        public IEnumerable<RDependency> Dependencies => _dependencies.Value;
+
         private dynamic _source;
 
         private Lazy<ImmutableList<REntity>> _entities;
+        private Lazy<ImmutableList<RDependency>> _dependencies;
 
         public RComponent(dynamic compInfo)
         {
             Domain = (string)compInfo.ModuleName;
             Name = (string)compInfo.ShortComponentName;
             Version = ((string)compInfo.Version).Replace("Version: ", "");
-            //ID = $"{Domain}.{Name}.{Version}";
-            ID = $"{Domain}.{Name}";
+         
+            ID = $"{Domain}.{Name}";    //ID = $"{Domain}.{Name}.{Version}";
             _source = compInfo;
             _entities = new Lazy<ImmutableList<REntity>>(GetEntites);
+            _dependencies = new Lazy<ImmutableList<RDependency>>(GetDependencies);
 
         }
 
-        public IEnumerable<REntity> Entities => _entities.Value;
+        private ImmutableList<RDependency> GetDependencies()
+        {
+            var deps = new List<RDependency>();
+            foreach (dynamic dep in (JArray)_source.Dependencies)
+            {
+                deps.Add(new RDependency((string)dep));
+            }
+            return deps.ToImmutableList();
+        }
+
+       
 
         private ImmutableList<REntity> GetEntites()
         {

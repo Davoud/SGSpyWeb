@@ -1,0 +1,17 @@
+<mat-nav-list>
+  <span *ngFor="let dep of dependencies">
+    <mat-list-item  *ngIf="dep.componentID" >    
+      <a [routerLink]="['..', dep.componentID]">{{ dep.name }}</a>
+    </mat-list-item>
+  </span>
+</mat-nav-list>
+<mat-list>
+  <span *ngFor="let dep1 of dependencies">
+    <mat-list-item *ngIf="!dep1.componentID">
+      <code>{{ dep1.name }}</code>
+    </mat-list-item>
+  </span>
+</mat-list>
+
+
+

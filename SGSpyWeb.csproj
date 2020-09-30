@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
@@ -27,7 +27,7 @@
   <ItemGroup>
     <None Remove="ClientApp\src\app\rcomponents\explorer\Accordion.ts" />
     <None Remove="ClientApp\src\app\rcomponents\explorer\panel.ts" />
-    <None Remove="ClientApp\src\app\rcomponents\Mode.ts" />
+    <None Remove="ClientApp\src\app\rcomponents\Models.ts" />
   </ItemGroup>
 
   <ItemGroup>
@@ -37,7 +37,7 @@
   <ItemGroup>
     <TypeScriptCompile Include="ClientApp\src\app\rcomponents\explorer\Accordion.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\rcomponents\explorer\panel.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\rcomponents\Mode.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\rcomponents\Models.ts" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

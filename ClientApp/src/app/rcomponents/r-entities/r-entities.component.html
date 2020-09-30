@@ -1,10 +1,22 @@
-<div *ngIf="entities">
-  <div *ngFor="let entity of entities">
-  <h4> {{ entity.name }} </h4>
-  <ul class="list-group">
-      <li class="list-group-item" *ngFor="let property of entity.properties">
-        {{ property.name }}: {{ property.type }}
-      </li>
-    </ul>
-  </div>
-</div>
+<mat-expansion-panel *ngFor="let entity of entities">
+  <mat-expansion-panel-header>
+    <mat-panel-title>
+      {{ entity.name }}
+    </mat-panel-title>
+    <mat-panel-description>
+      {{ entity.isEnum ? '(enum)' : '(entity)' }}
+    </mat-panel-description>
+  </mat-expansion-panel-header>
+  <mat-list>
+    <mat-list-item *ngFor="let property of entity.properties">
+      <code>
+        <span *ngIf="entity.isEnum">{{ property.name }}</span>
+        <span *ngIf="!entity.isEnum">
+          {{ property.name }}: <em>{{ property.type }}</em>
+        </span>
+      </code>
+    </mat-list-item>
+  </mat-list>    
+</mat-expansion-panel>
+
+

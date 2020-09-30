@@ -12,6 +12,11 @@ import { AccordionComponent } from './rcomponents/explorer/Accordion';
 import { CompDetailsComponent } from './rcomponents/comp-details/comp-details.component';
 import { REntitiesComponent } from './rcomponents/r-entities/r-entities.component';
 import { RServicesComponent } from './rcomponents/r-services/r-services.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatListModule } from '@angular/material/list';
+import { RDependenciesComponent } from './rcomponents/r-depencencies/r-depencencies.component';
 
 const routes: Routes = [
   
@@ -42,13 +47,18 @@ const routes: Routes = [
     AccordionComponent,
     CompDetailsComponent,
     REntitiesComponent,
-    RServicesComponent
+    RServicesComponent,
+    RDependenciesComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
     FormsModule,
-    RouterModule.forRoot(routes)
+    MatTabsModule,
+    MatExpansionModule,
+    MatListModule,
+    RouterModule.forRoot(routes),
+    BrowserAnimationsModule
     ],
     providers: [],
     bootstrap: [AppComponent],
