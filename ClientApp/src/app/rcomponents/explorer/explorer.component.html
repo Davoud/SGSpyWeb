@@ -1,16 +1,19 @@
 <p *ngIf="!domains"><em>loading components...</em></p>
 
+
 <mat-accordion>
-  <mat-expansion-panel *ngFor="let domain of domains">
-    <mat-expansion-panel-header>
-      <mat-panel-title>
-       {{ domain.name }}
-      </mat-panel-title>      
-    </mat-expansion-panel-header>
-    <mat-nav-list>
-      <mat-list-item *ngFor="let cmp of domain.components">
-         <a [routerLink]="cmp.id">{{ cmp.name }}</a>
-      </mat-list-item>
-    </mat-nav-list>
-  </mat-expansion-panel>
+ 
+    <mat-expansion-panel *ngFor="let domain of domains" style="background-color: khaki">
+      <mat-expansion-panel-header style="background-color: burlywood">
+        <mat-panel-title>
+          {{ domain.name }}
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <mat-nav-list >
+        <mat-list-item *ngFor="let cmp of domain.components" >
+          <a [routerLink]="cmp.id">{{ cmp.name }}</a>
+        </mat-list-item>
+      </mat-nav-list>
+    </mat-expansion-panel>
+ 
 </mat-accordion>

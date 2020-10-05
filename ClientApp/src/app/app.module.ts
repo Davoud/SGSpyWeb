@@ -16,7 +16,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatListModule } from '@angular/material/list';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { RDependenciesComponent } from './rcomponents/r-depencencies/r-depencencies.component';
-
+import { ScrollingModule } from '@angular/cdk/scrolling';
 const routes: Routes = [
   
     { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -55,6 +55,7 @@ const routes: Routes = [
     MatExpansionModule,
     MatListModule,
     MatSidenavModule,
+    ScrollingModule,
     RouterModule.forRoot(routes),
     BrowserAnimationsModule
     ],
