@@ -1,8 +1,7 @@
 <p *ngIf="!domains"><em>loading components...</em></p>
 
 
-<mat-accordion>
- 
+<mat-accordion> 
     <mat-expansion-panel *ngFor="let domain of domains" style="background-color: khaki">
       <mat-expansion-panel-header style="background-color: burlywood">
         <mat-panel-title>
@@ -15,5 +14,4 @@
         </mat-list-item>
       </mat-nav-list>
     </mat-expansion-panel>
- 
 </mat-accordion>
