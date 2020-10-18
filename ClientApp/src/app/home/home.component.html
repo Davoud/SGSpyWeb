@@ -1,10 +1,8 @@
-<div class="row">
-  <div class="col-md-4">
+<mat-sidenav-container class="container" autosize>
+  <mat-sidenav  mode="side" opened disableClose class="side">
     <app-explorer></app-explorer>
-
-  </div>
-  <div class="col-md-8">
+  </mat-sidenav>
+  <section>
     <router-outlet></router-outlet>
-  </div>
-</div>
-
+  </section>
+</mat-sidenav-container>
