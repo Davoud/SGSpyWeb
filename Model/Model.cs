@@ -43,9 +43,9 @@ namespace SGSpyWeb.Model
             ID = component.ID.Replace(".", "/");
             Type = "Component";
 
-            var entities = new RCategoryNode("Entities", $"{ID}/ent");            
-            var dependencies = new RCategoryNode("Dependencies", $"{ID}/dep");
-            var services = new RCategoryNode("Services", $"{ID}/srv");
+            var entities = new RCategoryNode("Entities", $"{ID}/entities");            
+            var dependencies = new RCategoryNode("Dependencies", $"{ID}/dependencies");
+            var services = new RCategoryNode("Services", $"{ID}/services");
 
             AddChildren(entities, services, dependencies);
 

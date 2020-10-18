@@ -22,6 +22,8 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { MatTreeModule } from '@angular/material/tree';
 import { MatIconModule } from '@angular/material/icon';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatButtonModule } from '@angular/material/button'; 
 
 const routes: Routes = [
   
@@ -64,6 +66,8 @@ const routes: Routes = [
     MatSidenavModule,
     MatTreeModule,
     MatIconModule,
+    MatTooltipModule,
+    MatButtonModule,
     ScrollingModule,
     RouterModule.forRoot(routes),
     BrowserAnimationsModule
