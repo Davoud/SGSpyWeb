@@ -11,6 +11,57 @@ using System.Threading.Tasks;
 
 namespace SGSpyWeb.Model
 {
+    public abstract class RTreeNode
+    {
+        protected List<RTreeNode> _children = new List<RTreeNode>();
+        public string Title { get; protected set; }
+        public string ID { get; protected set; }
+        public string Type { get; protected set; }
+        public virtual IEnumerable<RTreeNode> Children => _children;
+        public virtual void AddChildren(params RTreeNode[] children) 
+        {
+            foreach (var child in children)
+                _children.Add(child);
+        }
+    }
+
+    public class RDomainNode: RTreeNode
+    {       
+        public RDomainNode(string name, params RComponent[] components)
+        {
+            Title = name;
+            ID = name;
+            Type = "Domain";            
+        }
+    }
+
+    public class RComponentNode: RTreeNode
+    {
+        public RComponentNode(RComponent component)
+        {
+            Title = component.Name;
+            ID = component.ID.Replace(".", "/");
+            Type = "Component";
+
+            var entities = new RCategoryNode("Entities", $"{ID}/ent");            
+            var dependencies = new RCategoryNode("Dependencies", $"{ID}/dep");
+            var services = new RCategoryNode("Services", $"{ID}/srv");
+
+            AddChildren(entities, services, dependencies);
+
+        }
+    }
+
+    public class RCategoryNode: RTreeNode
+    {
+        public RCategoryNode(string title, string id)
+        {
+            Title = title;
+            ID = id;
+            Type = "Other";
+        }
+    }
+
     public class Domain
     {
         private ISet<ComponentHeader> _components;

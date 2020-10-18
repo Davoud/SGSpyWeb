@@ -32,7 +32,7 @@ namespace SGSpyWeb.Controllers
             }
             return domains.Values;
         }
-
+        
         // GET <RComponentsController>/id/entities
         [HttpGet("{id}/entities")]
         public IEnumerable<REntity> GetEntities(string id) =>

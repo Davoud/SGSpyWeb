@@ -11,12 +11,18 @@ import { CompDetailsComponent } from './rcomponents/comp-details/comp-details.co
 import { REntitiesComponent } from './rcomponents/r-entities/r-entities.component';
 import { RServicesComponent } from './rcomponents/r-services/r-services.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { RDependenciesComponent } from './rcomponents/r-depencencies/r-depencencies.component';
+import { RExplorerComponent } from './rcomponents/r-explorer/r-explorer.component';
+
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatListModule } from '@angular/material/list';
 import { MatSidenavModule } from '@angular/material/sidenav';
-import { RDependenciesComponent } from './rcomponents/r-depencencies/r-depencencies.component';
 import { ScrollingModule } from '@angular/cdk/scrolling';
+import { MatTreeModule } from '@angular/material/tree';
+import { MatIconModule } from '@angular/material/icon';
+
 const routes: Routes = [
   
     { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -45,7 +51,8 @@ const routes: Routes = [
     CompDetailsComponent,
     REntitiesComponent,
     RServicesComponent,
-    RDependenciesComponent
+    RDependenciesComponent,
+    RExplorerComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -55,6 +62,8 @@ const routes: Routes = [
     MatExpansionModule,
     MatListModule,
     MatSidenavModule,
+    MatTreeModule,
+    MatIconModule,
     ScrollingModule,
     RouterModule.forRoot(routes),
     BrowserAnimationsModule

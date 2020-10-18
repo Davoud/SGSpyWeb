@@ -1,6 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Domain } from '../Model';
+import { ServerService } from '../../server.service';
 
 
 @Component({
@@ -11,19 +12,19 @@ import { Domain } from '../Model';
 export class ExplorerComponent implements OnInit {
 
   domains: Domain[];
-  baseUrl: string;
+ 
 
   
-  constructor(private http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
-    this.baseUrl = baseUrl;
+  constructor(private server: ServerService) {
+    
   }
 
   ngOnInit() {
     this.getDomains();
   }
 
-  getDomains() {
-    this.http.get<Domain[]>(this.baseUrl + "rcomponents").subscribe(domains => {
+  getDomains() {    
+    this.server.getDomains().subscribe(domains => {
       this.domains = domains;
     });
   }

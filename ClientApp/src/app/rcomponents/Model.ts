@@ -26,3 +26,10 @@ export interface RDependency {
   name: string;
   componentId: string;
 }
+
+export interface RTreeNode {
+  title: string;
+  type: "Domain" | "Component" | "Services" | "Other"
+  id: string;
+  children?: RTreeNode[];
+}
