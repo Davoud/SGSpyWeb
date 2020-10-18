@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject, Input } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { RDependency } from '../Models';
+import { RDependency } from '../Model';
 
 @Component({
   selector: 'app-r-dependencies',

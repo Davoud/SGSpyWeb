@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Inject } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
-import { REntity } from '../Models';
+import { REntity } from '../Model';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
