@@ -32,13 +32,18 @@ namespace SGSpyWeb.Controllers
             }
             return domains.Values;
         }
+
         
-        // GET <RComponentsController>/id/entities
-        [HttpGet("{id}/entities")]
-        public IEnumerable<REntity> GetEntities(string id) =>
-             RComponentsDB.GetByID(id).Match(() => Enumerable.Empty<REntity>(), cmp => cmp.Entities);
+        [HttpGet("{domain}")]
+        public IEnumerable<ComponentHeader> GetComponents(string domain) =>
+             RComponentsDB.GetByDomain(domain);
+
         
-        // GET <RComponentsController>/id/dependencies
+        [HttpGet("{domain}/{component}/entities")]
+        public IEnumerable<REntity> GetEntities(string domain, string component) =>
+             RComponentsDB.GetByID($"{domain}.{component}").Match(() => Enumerable.Empty<REntity>(), cmp => cmp.Entities);
+        
+        
         [HttpGet("{id}/dependencies")]
         public IEnumerable<RDependency> GetDependencies(string id)
         {

@@ -1,0 +1,7 @@
+<mat-card>{{ domain }}</mat-card>
+<mat-nav-list>
+  <mat-list-item *ngFor="let cmp of components">
+    <a [routerLink]="cmp.name">{{ cmp.name }} ({{cmp.version}})</a>
+  </mat-list-item>
+</mat-nav-list>
+

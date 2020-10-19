@@ -41,13 +41,7 @@ namespace SGSpyWeb.Model
         {
             Title = component.Name;
             ID = component.ID.Replace(".", "/");
-            Type = "Component";
-
-            var entities = new RCategoryNode("Entities", $"{ID}/entities");            
-            var dependencies = new RCategoryNode("Dependencies", $"{ID}/dependencies");
-            var services = new RCategoryNode("Services", $"{ID}/services");
-
-            AddChildren(entities, services, dependencies);
+            Type = "Component";        
 
         }
     }
@@ -170,6 +164,12 @@ namespace SGSpyWeb.Model
             Name = (string)compInfo.ShortComponentName;
             Version = ((string)compInfo.Version).Replace("Version: ", "");
          
+            if(Name == "Common")
+            {
+                Name = Domain;
+                Domain = "Framework";
+            }
+
             ID = $"{Domain}.{Name}";    //ID = $"{Domain}.{Name}.{Version}";
             _source = compInfo;
             _entities = new Lazy<ImmutableList<REntity>>(GetEntites);

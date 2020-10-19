@@ -8,14 +8,18 @@ import { ActivatedRoute, Params } from '@angular/router';
 })
 export class CompDetailsComponent implements OnInit {
 
-  id: string;
+  component: string;
+  domain: string;
 
   constructor(private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.route.params.subscribe((p: Params) => {
-      this.id = p['id'];
+      this.component = p['component'];
+      this.domain = p['domain'];
     });
+
+    
   }
 
 }

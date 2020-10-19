@@ -1,7 +1,7 @@
 import { Injectable, Inject } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { Domain, RTreeNode } from './rcomponents/Model';
+import { Domain, RTreeNode, RComponent, REntity } from './rcomponents/Model';
 
 
 
@@ -9,6 +9,7 @@ import { Domain, RTreeNode } from './rcomponents/Model';
   providedIn: 'root'
 })
 export class ServerService {
+  
 
   constructor(private http: HttpClient, @Inject('BASE_URL') private baseUrl: string) { }
 
@@ -18,5 +19,13 @@ export class ServerService {
 
   getTree(): Observable<RTreeNode[]> {
     return this.http.get<RTreeNode[]>(this.baseUrl + "rexplorer");
+  }
+
+  getComponents(domain: string): Observable<RComponent[]> {
+    return this.http.get<RComponent[]>(this.baseUrl + `rcomponents/${domain}`);
+  }
+
+  getEntities(domain: string, component: string): Observable<REntity[]> {
+    return this.http.get<REntity[]>(this.baseUrl + `rcomponents/${domain}/${component}/entities`);
   }
 }

@@ -4,6 +4,7 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Threading.Tasks;
 using Utils;
 using static Utils.OptionHelpers;
@@ -44,6 +45,22 @@ namespace SGSpyWeb.Model
             
 
             Console.WriteLine("Sent all for loading");
+        }
+
+        public static IEnumerable<ComponentHeader> GetByDomain(string domain)
+        {
+            foreach(var cmd in db.Values)
+            {
+                if(cmd.Domain == domain)
+                {
+                    yield return new ComponentHeader
+                    {
+                        ID = cmd.ID,
+                        Version = cmd.Version,
+                        Name = cmd.Name,
+                    };
+                }
+            }
         }
 
         public static Option<RComponent> GetByID(string componentId) =>

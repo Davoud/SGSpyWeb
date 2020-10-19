@@ -1,19 +1,19 @@
-<em>{{ id }}</em>
+<mat-card>{{ domain }}.{{ component }}</mat-card>
 
 <mat-tab-group [selectedIndex]=0>
   <mat-tab label="Entities">
     <ng-template matTabContent>
-      <app-r-entities [componentId]="id"></app-r-entities>
+      <app-r-entities [componentId]="'{ domain = domain; component = component }'"></app-r-entities>
     </ng-template>
   </mat-tab>
   <mat-tab label="Services">
     <ng-template matTabContent>
-      <app-r-services [componentId]="id"></app-r-services>
+      <app-r-services [componentId]="component"></app-r-services>
     </ng-template>
   </mat-tab>
   <mat-tab label="Dependencies">
     <ng-template matTabContent>
-      <app-r-dependencies [componentId]="id"></app-r-dependencies>
+      <app-r-dependencies [componentId]="component"></app-r-dependencies>
     </ng-template>
   </mat-tab>
 </mat-tab-group>
