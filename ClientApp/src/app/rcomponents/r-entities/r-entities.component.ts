@@ -12,14 +12,13 @@ import { ServerService } from '../../server.service';
 export class REntitiesComponent implements OnInit {
 
   private component: string;
-  private domain: string;
-
-  @Input('componentId') set componentId(value: { domain: string, component: string }) {
-    if (this.component === value.component && this.domain === value.domain) return;
-    this.component = value.component;
-    this.domain = value.domain
-    this.server.getEntities(this.domain, this.component).subscribe(entitis => {
-      this.entities = this.entities;
+ 
+  @Input('componentId') set componentId(value: string) {
+    if (this.component === value) return;
+    this.component = value;  
+    let dot = value.indexOf('.');
+    this.server.getEntities(value.substring(0, dot), value.substring(dot + 1)).subscribe((entities: REntity[]) => {
+      this.entities = entities;
     })
   }
 
