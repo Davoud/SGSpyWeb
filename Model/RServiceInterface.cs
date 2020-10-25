@@ -7,12 +7,37 @@ namespace SGSpyWeb.Model
 {
     public class RServiceInterface : IAssemblyItem
     {
-        public string Name => throw new NotImplementedException();
+        public string Name { get; }
 
-        public string Domain => throw new NotImplementedException();
+        public string Domain { get; }
 
-        public string Component => throw new NotImplementedException();
+        public string Component { get; }
 
-        public string ID => throw new NotImplementedException();
+        public string ID { get; }
+
+        public bool IsComponentService { get; }
+
+        public IEnumerable<RService> Services { get; }
+        public RServiceInterface(RComponent component, string name, bool isComSrv)
+        {
+            Name = name;
+            Component = component.Component;
+            Domain = component.Domain;
+            ID = $"{component.ID}.{name}";
+            IsComponentService = isComSrv;
+        }
+    }
+
+    public class RService: IAssemblyItem
+    {
+        public string Name { get; }
+
+        public string Domain { get; }
+
+        public string Component { get; }
+
+        public string ID { get; }
+
+        public RServiceInterface Interface { get; }
     }
 }

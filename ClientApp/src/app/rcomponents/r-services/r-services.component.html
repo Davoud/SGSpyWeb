@@ -1,1 +1,12 @@
-<p>r-services works!</p>
+<mat-expansion-panel *ngFor="let intf of interfaces">
+  <mat-expansion-panel-header>
+    <mat-panel-title>
+      {{ intf.name }}
+    </mat-panel-title>
+    <mat-panel-description>
+      {{ intf.isComponentService ? '(ComponentServiceInterface)' : '(ServiceInterface)' }}
+    </mat-panel-description>
+  </mat-expansion-panel-header>
+  <mat-list>    
+  </mat-list>
+</mat-expansion-panel>

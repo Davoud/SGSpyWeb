@@ -31,6 +31,14 @@ export interface RDependency {
   component: string;
 }
 
+export interface RServiceInterface {
+  id: string;
+  name: string;
+  domain: string;
+  component: string;
+  isComponentService: boolean;
+}
+
 export interface RTreeNode {
   name: string;
   domain: string;

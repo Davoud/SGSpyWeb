@@ -1,11 +1,15 @@
-.example-tree-invisible {
+.r-tree-invisible {
   display: none;
 }
 
-.example-tree ul,
-.example-tree li {
+.r-tree ul,
+.r-tree li {
   margin-top: 0;
   margin-bottom: 0;
   list-style-type: none;
 }
 
+.r-tree a {
+   color: beige;
+   text-decoration: none;   
+}

@@ -40,8 +40,9 @@ namespace SGSpyWeb.Model
             });
 
             var commons = Directory.GetFiles(path, "*.json");
-            foreach (var dllInfo in commons.Take(10)) 
-                loader.Send(dllInfo);
+            foreach (var dllInfo in commons) 
+                if(dllInfo.Contains("Retail"))
+                    loader.Send(dllInfo);
             
 
             Console.WriteLine("Sent all for loading");

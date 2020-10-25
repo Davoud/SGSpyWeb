@@ -58,6 +58,14 @@ namespace SGSpyWeb.Controllers
         }
 
 
-
+        [HttpGet("{domain}/{component}/services")]
+        public IEnumerable<RServiceInterface> GetServices(string domain, string component)
+        {
+            return RComponentsDB
+                .Get(domain, component)
+                .Match(
+                    none: () => Enumerable.Empty<RServiceInterface>(),
+                    some: cmp => cmp.Services);
+        }
     }
 }

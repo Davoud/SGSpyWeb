@@ -15,11 +15,13 @@ namespace SGSpyWeb.Model
 
         public IEnumerable<REntity> Entities => _entities.Value;
         public IEnumerable<RDependency> Dependencies => _dependencies.Value;
+        public IEnumerable<RServiceInterface> Services => _services.Value;
 
         private dynamic _source;
 
         private Lazy<ImmutableList<REntity>> _entities;
         private Lazy<ImmutableList<RDependency>> _dependencies;
+        private Lazy<ImmutableList<RServiceInterface>> _services;
 
         public RComponent(dynamic compInfo)
         {
@@ -38,7 +40,19 @@ namespace SGSpyWeb.Model
             _source = compInfo;
             _entities = new Lazy<ImmutableList<REntity>>(GetEntites);
             _dependencies = new Lazy<ImmutableList<RDependency>>(GetDependencies);
+            _services = new Lazy<ImmutableList<RServiceInterface>>(GetServices);
 
+        }
+
+        private ImmutableList<RServiceInterface> GetServices()
+        {
+            var servies = new List<RServiceInterface>();
+            foreach (dynamic @interface in (JArray)_source.ServiceInterfaces)
+            {
+                var srv = new RServiceInterface(this, (string)@interface.Name, (int)@interface.Type == 0);
+                servies.Add(srv);
+            }
+            return servies.ToImmutableList();
         }
 
         private ImmutableList<RDependency> GetDependencies()
