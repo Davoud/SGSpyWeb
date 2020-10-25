@@ -40,7 +40,7 @@ namespace SGSpyWeb.Model
             });
 
             var commons = Directory.GetFiles(path, "*.json");
-            foreach (var dllInfo in commons)
+            foreach (var dllInfo in commons.Take(10)) 
                 loader.Send(dllInfo);
             
 
