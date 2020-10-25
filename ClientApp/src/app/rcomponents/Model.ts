@@ -12,6 +12,8 @@ export interface RComponent {
 
 export interface REntity {
   name: string;
+  domain: string;
+  component: string;
   id: string;
   isEnum: boolean;
   propertires: RProperty[]
@@ -23,12 +25,16 @@ export interface RProperty {
 }
 
 export interface RDependency {
+  id: string;
   name: string;
-  componentId: string;
+  domain: string;
+  component: string;
 }
 
 export interface RTreeNode {
-  title: string;
+  name: string;
+  domain: string;
+  component: string;
   type: "Domain" | "Component" | "Services" | "Other"
   id: string;
   children?: RTreeNode[];

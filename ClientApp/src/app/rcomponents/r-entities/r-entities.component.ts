@@ -12,6 +12,7 @@ import { ServerService } from '../../server.service';
 export class REntitiesComponent implements OnInit {
 
   private component: string;
+  entities: REntity[];
  
   @Input('componentId') set componentId(value: string) {
     if (this.component === value) return;
@@ -22,17 +23,11 @@ export class REntitiesComponent implements OnInit {
     })
   }
 
-  entities: REntity[];
   
 
-  constructor(private server: ServerService)
-  {
-    
-  }
+  constructor(private server: ServerService) {}
 
-  ngOnInit() {    
-    
-  }
-
+  ngOnInit() {}
+  
   
 }

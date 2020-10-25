@@ -29,7 +29,7 @@ namespace SGSpyWeb.Model
                 try
                 {
                     var  cmp = new RComponent(JObject.Parse(File.ReadAllText(filePath)));                    
-                    db[cmp.ID] = cmp;
+                    db[$"{cmp.Component}-{cmp.Domain}"] = cmp;
                     Console.WriteLine($"Added {cmp.ID}");
                 }
                 catch(Exception ex)
@@ -65,6 +65,9 @@ namespace SGSpyWeb.Model
 
         public static Option<RComponent> GetByID(string componentId) =>
             db.TryGetValue(componentId, out var cmp) ? Some(cmp) : None;
+
+        public static Option<RComponent> Get(string domain, string component) =>
+            db.TryGetValue($"{component}-{domain}", out var cmp) ? Some(cmp) : None;
     }
 
    

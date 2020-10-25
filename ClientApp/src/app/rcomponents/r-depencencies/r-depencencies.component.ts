@@ -1,6 +1,7 @@
 import { Component, OnInit, Inject, Input } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { RDependency } from '../Model';
+import { ServerService } from '../../server.service';
 
 @Component({
   selector: 'app-r-dependencies',
@@ -9,23 +10,23 @@ import { RDependency } from '../Model';
 })
 export class RDependenciesComponent implements OnInit {
 
-  private _parentId: string;
+  private component: string;
   dependencies: RDependency[];
 
   @Input('componentId') set componentId(value: string) {
-    if (this._parentId === value) return;
-    this._parentId = value;
-    this.getDependencies();
+    if (this.component === value) return;
+    this.component = value;
+    let dot = value.indexOf('.');
+    this.server.getDependencies(value.substring(0, dot), value.substring(dot + 1)).subscribe((dependencies: RDependency[]) => {
+      this.dependencies = dependencies;
+    })
   }
 
-  constructor(private http: HttpClient, @Inject('BASE_URL') private baseUrl: string) { }
+  constructor(private server: ServerService) { }
 
   ngOnInit() {
   }
   
-  getDependencies() {
-    this.http.get<RDependency[]>(this.baseUrl + `rcomponents/${this._parentId}/dependencies`).subscribe(dependencies => {
-      this.dependencies = dependencies;      
-    });
-  }
+  
+  
 }

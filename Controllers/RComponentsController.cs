@@ -5,8 +5,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using SGSpyWeb.Model;
 using Utils;
+using Utils.Option;
 
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace SGSpyWeb.Controllers
 {
@@ -14,7 +14,7 @@ namespace SGSpyWeb.Controllers
     [ApiController]
     public class RComponentsController : ControllerBase
     {
-        // GET: <RComponentsController>
+       
         [HttpGet]
         public IEnumerable<Domain> Get()
         {
@@ -41,19 +41,23 @@ namespace SGSpyWeb.Controllers
         
         [HttpGet("{domain}/{component}/entities")]
         public IEnumerable<REntity> GetEntities(string domain, string component) =>
-             RComponentsDB.GetByID($"{domain}.{component}").Match(() => Enumerable.Empty<REntity>(), cmp => cmp.Entities);
+             RComponentsDB.Get(domain, component)
+                .Match(
+                    none: () => Enumerable.Empty<REntity>(), 
+                    some: cmp => cmp.Entities);
         
         
-        [HttpGet("{id}/dependencies")]
-        public IEnumerable<RDependency> GetDependencies(string id)
-        {
-            var deps = RComponentsDB.GetByID(id);
-            if (deps.IsSome())
-                return deps.Value.Dependencies;
-
-            return Enumerable.Empty<RDependency>();
-
+        [HttpGet("{domain}/{component}/dependencies")]
+        public IEnumerable<RDependency> GetDependencies(string domain, string component)
+        {            
+            return RComponentsDB
+                .Get(domain, component)
+                .Match(
+                    none: () => Enumerable.Empty<RDependency>(), 
+                    some: cmp => cmp.Dependencies);
         }
+
+
 
     }
 }

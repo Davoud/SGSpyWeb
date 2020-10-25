@@ -1,7 +1,7 @@
 import { Injectable, Inject } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { Domain, RTreeNode, RComponent, REntity } from './rcomponents/Model';
+import { Domain, RTreeNode, RComponent, REntity, RDependency } from './rcomponents/Model';
 
 
 
@@ -27,5 +27,9 @@ export class ServerService {
 
   getEntities(domain: string, component: string): Observable<REntity[]> {
     return this.http.get<REntity[]>(this.baseUrl + `rcomponents/${domain}/${component}/entities`);
+  }
+
+  getDependencies(domain: string, component: string): Observable<RDependency[]> {
+    return this.http.get<RDependency[]>(this.baseUrl + `rcomponents/${domain}/${component}/dependencies`);
   }
 }
