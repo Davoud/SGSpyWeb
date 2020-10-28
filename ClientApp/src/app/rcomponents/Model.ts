@@ -13,7 +13,7 @@ export interface RComponent {
 export interface REntity {
   name: string;
   domain: string;
-  component: string;
+  componentName: string;
   id: string;
   isEnum: boolean;
   propertires: RProperty[]
@@ -28,14 +28,14 @@ export interface RDependency {
   id: string;
   name: string;
   domain: string;
-  component: string;
+  componentName: string;
 }
 
 export interface RServiceInterface {
   id: string;
   name: string;
   domain: string;
-  component: string;
+  componentName: string;
   isComponentService: boolean;
 }
 

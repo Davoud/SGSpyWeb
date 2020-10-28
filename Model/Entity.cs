@@ -3,13 +3,13 @@ using System.Collections.Immutable;
 
 namespace SGSpyWeb.Model
 {
-    public class REntity: IAssemblyItem
+    public class Entity: IAssemblyItem
     {        
-        public REntity(RComponent component, string name, bool isEnum, IEnumerable<RProperty> properties)
+        public Entity(Component component, string name, bool isEnum, IEnumerable<Property> properties)
         {
             ID = $"{component.ID}.{name}";
             Name = name;
-            Component = component.Component;
+            ComponentName = component.ComponentName;
             Domain = component.Domain;
             IsEnum = isEnum;
             Properties = properties;
@@ -18,16 +18,16 @@ namespace SGSpyWeb.Model
         public string Name { get; private set; }
         public string ID { get; private set; }
         public string Domain { get; private set; }
-        public string Component { get; private set; }
+        public string ComponentName { get; private set; }
 
         public bool IsEnum { get; private set; }
-        public IEnumerable<RProperty> Properties { get; }
+        public IEnumerable<Property> Properties { get; }
         public override string ToString() => IsEnum ? $"[Enum: {ID}]" : $"[Entity: {ID}]";        
     }
 
-    public class RProperty
+    public class Property
     {
-        public RProperty(string name, string type)
+        public Property(string name, string type)
         {
             Name = name;
             Type = type;

@@ -1,13 +1,13 @@
 ﻿namespace SGSpyWeb.Model
 {
-    public class RDependency : IAssemblyItem
+    public class Dependency : IAssemblyItem
     {
         public string Name { get; }
-        public string Component { get; }
+        public string ComponentName { get; }
         public string Domain { get; }
         public string ID { get; }
 
-        public RDependency(string componentID, string name)
+        public Dependency(string componentID, string name)
         {
             Name = name;
             ID = $"{componentID}_{name}";
@@ -15,7 +15,7 @@
             {
                 var parts = name.Split('.');                
                 Domain = parts.Length > 1 ? parts[1] : "";
-                Component = parts.Length > 2 ? parts[2] : "";
+                ComponentName = parts.Length > 2 ? parts[2] : "";
             }
         }
     }

@@ -1,6 +1,6 @@
 <mat-nav-list>
   <span *ngFor="let dep of dependencies">
-    <mat-list-item  *ngIf="dep.component" >    
+    <mat-list-item  *ngIf="dep.componentName" >    
       <a [routerLink]="['../..', dep.domain, dep.component]">{{ dep.name }}</a>
     </mat-list-item>
   </span>

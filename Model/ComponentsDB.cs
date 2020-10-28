@@ -12,11 +12,11 @@ using static Utils.OptionHelpers;
 
 namespace SGSpyWeb.Model
 {
-    public static class RComponentsDB
+    public static class ComponentsDB
     {
-        private static readonly ConcurrentDictionary<string, RComponent> db = new ConcurrentDictionary<string, RComponent>();
+        private static readonly ConcurrentDictionary<string, Component> db = new ConcurrentDictionary<string, Component>();
 
-        public static IEnumerable<RComponent> LoadedComponents() => db.Values;                
+        public static IEnumerable<Component> LoadedComponents() => db.Values;                
 
         public static void Load(string path)
         {
@@ -28,8 +28,8 @@ namespace SGSpyWeb.Model
             {
                 try
                 {
-                    var  cmp = new RComponent(JObject.Parse(File.ReadAllText(filePath)));                    
-                    db[$"{cmp.Component}-{cmp.Domain}"] = cmp;
+                    var  cmp = new Component(JObject.Parse(File.ReadAllText(filePath)));                    
+                    db[$"{cmp.ComponentName}-{cmp.Domain}"] = cmp;
                     Console.WriteLine($"Added {cmp.ID}");
                 }
                 catch(Exception ex)
@@ -48,26 +48,12 @@ namespace SGSpyWeb.Model
             Console.WriteLine("Sent all for loading");
         }
 
-        public static IEnumerable<ComponentHeader> GetByDomain(string domain)
-        {
-            foreach(var cmd in db.Values)
-            {
-                if(cmd.Domain == domain)
-                {
-                    yield return new ComponentHeader
-                    {
-                        ID = cmd.ID,
-                        Version = cmd.Version,
-                        Name = cmd.Name,
-                    };
-                }
-            }
-        }
+       
 
-        public static Option<RComponent> GetByID(string componentId) =>
+        public static Option<Component> GetByID(string componentId) =>
             db.TryGetValue(componentId, out var cmp) ? Some(cmp) : None;
 
-        public static Option<RComponent> Get(string domain, string component) =>
+        public static Option<Component> Get(string domain, string component) =>
             db.TryGetValue($"{component}-{domain}", out var cmp) ? Some(cmp) : None;
     }
 

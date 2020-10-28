@@ -14,7 +14,7 @@ namespace SGSpyWeb
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
-            RComponentsDB.Load(@"D:\Dvp11");
+            ComponentsDB.Load(@"D:\Dvp11");
         }
 
         public IConfiguration Configuration { get; }

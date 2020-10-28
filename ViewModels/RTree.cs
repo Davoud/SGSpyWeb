@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SGSpyWeb.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics.CodeAnalysis;
@@ -7,7 +8,7 @@ using System.Security.Cryptography;
 using System.Security.Permissions;
 using System.Threading.Tasks;
 
-namespace SGSpyWeb.Model
+namespace SGSpyWeb.ViewModels
 {
     public abstract class RTreeNode
     {
@@ -27,7 +28,7 @@ namespace SGSpyWeb.Model
 
     public class RDomainNode: RTreeNode
     {       
-        public RDomainNode(string name, params RComponent[] components)
+        public RDomainNode(string name, params Model.Component[] components)
         {
             Name = name;          
             ID = name;
@@ -37,36 +38,27 @@ namespace SGSpyWeb.Model
 
     public class RComponentNode: RTreeNode
     {
-        public RComponentNode(RComponent component)
+        public RComponentNode(Model.Component component)
         {
             Name = component.Name;
             ID = component.ID;
             Domain = component.Domain;
-            Component = component.Component;
+            Component = component.ComponentName;
             Type = "Component";        
         }
     }
+   
 
-    public class RCategoryNode: RTreeNode
-    {
-        public RCategoryNode(string title, string id)
-        {
-            Name = title;
-            ID = id;
-            Type = "Other";
-        }
-    }
-
-    public class ComponentHeader: IComparable<ComponentHeader>
+    public class RComponent: IComparable<RComponent>
     {
         public string Name { get; set; }
         public string Version { get; set; }
         public string ID { get; set; }
-
+        public int Count { get; set; }
         public override int GetHashCode() => ID.GetHashCode();
-        public override bool Equals(object obj) => ReferenceEquals(this, obj) || (obj is ComponentHeader r && r.ID == ID);
+        public override bool Equals(object obj) => ReferenceEquals(this, obj) || (obj is RComponent r && r.ID == ID);
 
-        public int CompareTo([AllowNull] ComponentHeader other) => Name.CompareTo(other.Name);
+        public int CompareTo([AllowNull] RComponent other) => Name.CompareTo(other.Name);
         
     }
 

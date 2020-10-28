@@ -9,7 +9,7 @@ namespace SGSpyWeb.Model
     {
         string Name { get; }
         string Domain { get; }
-        string Component { get; }
+        string ComponentName { get; }
         string ID { get; }
     }
 }

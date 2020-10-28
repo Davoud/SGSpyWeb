@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SGSpyWeb.Model;
+using SGSpyWeb.ViewModels;
 
 namespace SGSpyWeb.Controllers
 {
@@ -17,7 +18,7 @@ namespace SGSpyWeb.Controllers
         {
             var domainNodes = new SortedList<string, RTreeNode>();
 
-            foreach (var cmp in RComponentsDB.LoadedComponents())
+            foreach (var cmp in ComponentsDB.LoadedComponents())
             {
                 if (domainNodes.TryGetValue(cmp.Domain, out var domain))
                 {
@@ -32,9 +33,6 @@ namespace SGSpyWeb.Controllers
             }
 
             return domainNodes.Values;
-
-
-
 
         }
     }
